@@ -37,3 +37,14 @@ body {
     /* min-height: 0; */
     overflow-y: auto;
 }
+
+.new-text {
+    background: yellow;
+    transition: background 2s ease-in-out;
+    padding: 1px 0px;
+}
+
+/* Applies when element has both classes */
+.new-text.fade-out {
+    background: transparent;
+}

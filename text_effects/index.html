@@ -58,14 +58,41 @@
 
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent form submission
-            const text = textInput.value;
+            const text = textInput.value.trim();
             console.log('Animating text:', text);
-            if (text) {
+            if (text !== '') {
                 textInput.value = ''; // Clear input field
                 // Trigger animation with the entered text
                 storyText.textContent = storyText.textContent + ' ' + text;
+                highlightNewText(text);
             }
         });
+
+        function replaceLast(text, replacement) {
+            const currentHTML = storyText.innerHTML;
+            const lastIndex = currentHTML.lastIndexOf(text);
+            if (lastIndex !== -1) {
+                const newHTML = currentHTML.substring(0, lastIndex) + replacement + currentHTML.substring(lastIndex + text.length);
+                return newHTML;
+            }
+        }
+
+        function highlightNewText(text) {
+            const currentHTML = storyText.innerHTML;
+            const highlightedText = `<span class="new-text">${text}</span>`;
+            storyText.innerHTML = replaceLast(text, highlightedText);
+            const newTextElement = storyText.querySelector('.new-text');
+            if (newTextElement) {
+                setTimeout(() => {
+                    newTextElement.classList.add('fade-out');
+                }, 10);
+            }
+
+            setTimeout(() => {
+                storyText.textContent = storyText.textContent; // This removes HTML tags
+            }, 2000);
+        }
+
     </script>
 </body>
 
