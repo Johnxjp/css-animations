@@ -24,7 +24,8 @@
             </div>
         </div>
         <form class="text-input-form" id="text-form">
-            <input type="text" id="text-input" style="height: 30px; width: 80%;" placeholder="Type something..." required>
+            <input type="text" id="text-input" style="height: 30px; width: 80%;" placeholder="Type something..."
+                required>
             <button type="submit" id="animate-button">Animate Text</button>
         </form>
     </div>
@@ -42,13 +43,8 @@
                 textInput.value = ''; // Clear input field
                 // Trigger animation with the entered text
                 text.split(' ').filter(word => word !== '').forEach((word, wordIndex) => {
-                    // storyText.textContent = storyText.textContent + ' ' + word;
                     highlightNewText(word, wordIndex);
                 });
-
-                // setTimeout(() => {
-                //     storyText.textContent = storyText.textContent; // This removes HTML tags
-                // }, 5000);
             }
         });
 
