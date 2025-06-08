@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Effects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-2">
+            <h1 class="title">Text Effects</h1>
+            <p class="description">Explore various text effects using CSS animations and JavaScript.</p>
+            <div class="story-container">
+                <p id="story-text">
+                    CSS transitions let you decide which properties to animate (by listing them explicitly), when the
+                    animation will start (by setting a delay), how long the transition will last (by setting a
+                    duration),
+                    and how the transition will run (by defining an easing function, e.g., linearly or quick at the
+                    beginning, slow at the end). CSS transitions let you decide which properties to animate (by listing
+                    them explicitly), when the animation will start (by setting a delay), how long the transition will
+                    last (by setting a duration), and how the transition will run (by defining an easing function, e.g.,
+                    linearly or quick at the beginning, slow at the end).CSS transitions let you decide which properties
+                    to animate (by listing them explicitly), when the animation will start (by setting a delay), how
+                    long the transition will last (by setting a duration), and how the transition will run (by defining
+                    an easing function, e.g., linearly or quick at the beginning, slow at the end).CSS transitions let
+                    you decide which properties to animate (by listing them explicitly), when the animation will start
+                    (by setting a delay), how long the transition will last (by setting a duration), and how the
+                    transition will run (by defining an easing function, e.g., linearly or quick at the beginning, slow
+                    at the end).CSS transitions let you decide which properties to animate (by listing them explicitly),
+                    when the animation will start (by setting a delay), how long the transition will last (by setting a
+                    duration), and how the transition will run (by defining an easing function, e.g., linearly or quick
+                    at the beginning, slow at the end).
+                    CSS transitions let you decide which properties to animate (by listing them explicitly), when the
+                    animation will start (by setting a delay), how long the transition will last (by setting a
+                    duration), and how the transition will run (by defining an easing function, e.g., linearly or quick
+                    at the beginning, slow at the end).CSS transitions let you decide which properties to animate (by
+                    listing them explicitly), when the animation will start (by setting a delay), how long the
+                    transition
+                    will last (by setting a duration), and how the transition will run (by defining an easing function,
+                    e.g., linearly or quick at the beginning, slow at the end).
+                </p>
+            </div>
+        </div>
+        <form class="text-input-form" id="text-form">
+            <label for="text-input">Enter text:</label>
+            <input type="text" id="text-input" placeholder="Type something..." required>
+            <button type="submit" id="animate-button">Animate Text</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('text-form');
+        const textInput = document.getElementById('text-input');
+        const animateButton = document.getElementById('animate-button');
+        const storyText = document.getElementById('story-text');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            const text = textInput.value;
+            console.log('Animating text:', text);
+            if (text) {
+                textInput.value = ''; // Clear input field
+                // Trigger animation with the entered text
+                storyText.textContent = storyText.textContent + ' ' + text;
+            }
+        });
+    </script>
+</body>
+
+</html>
