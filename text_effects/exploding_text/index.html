@@ -40,7 +40,6 @@
             if (isExploded) {
                 words.forEach((word, index) => {
                     word.classList.remove('explode');
-                    word.style.transform = '';
                 });
                 isExploded = false;
             }
@@ -48,9 +47,10 @@
                 words.forEach((word, index) => {
                     const xShift = Math.random() * 20 - 10; // Random x shift between -10 and 10
                     const yShift = Math.random() * 20 - 10; // Random y shift between -10 and 10
+                    word.style.setProperty('--x-shift', `${xShift}px`);
+                    word.style.setProperty('--y-shift', `${yShift}px`);
                     setTimeout(() => {
                         word.classList.add('explode');
-                        word.style.transform = `translate(${xShift}px, ${yShift}px)`;
                     }, 50); // Delay for each word
                 });
                 isExploded = true;
