@@ -15,11 +15,6 @@
             <p class="description">Explore various text effects using CSS animations and JavaScript.</p>
             <div class="story-container">
                 <p id="story-text">
-                    CSS transitions let you decide which properties to animate (by listing them explicitly), when the
-                    animation will start (by setting a delay), how long the transition will last (by setting a
-                    duration),
-                    and how the transition will run (by defining an easing function, e.g., linearly or quick at the
-                    beginning, slow at the end).
                 </p>
             </div>
         </div>
@@ -72,7 +67,7 @@
             storyText.appendChild(newTextElement);
 
             // Set the timeout to add the fade-out class
-            const delay = 50
+            const delay = 200
             setTimeout(() => {
                 console.log('Adding fade-in to:', text);
                 newTextElement.classList.add('fade-in');
