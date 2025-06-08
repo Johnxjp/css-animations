@@ -24,8 +24,7 @@
             </div>
         </div>
         <form class="text-input-form" id="text-form">
-            <label for="text-input">Enter text:</label>
-            <input type="text" id="text-input" placeholder="Type something..." required>
+            <input type="text" id="text-input" style="height: 30px; width: 80%;" placeholder="Type something..." required>
             <button type="submit" id="animate-button">Animate Text</button>
         </form>
     </div>
@@ -34,20 +33,17 @@
         const textInput = document.getElementById('text-input');
         const animateButton = document.getElementById('animate-button');
         const storyText = document.getElementById('story-text');
-        let wordIndex = 0;
 
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent form submission
             const text = textInput.value.trim();
-            console.log('Animating text:', text);
             storyText.textContent = storyText.textContent; // This removes HTML tags
             if (text !== '') {
                 textInput.value = ''; // Clear input field
                 // Trigger animation with the entered text
-                text.split(' ').filter(word => word !== '').forEach((word) => {
+                text.split(' ').filter(word => word !== '').forEach((word, wordIndex) => {
                     // storyText.textContent = storyText.textContent + ' ' + word;
                     highlightNewText(word, wordIndex);
-                    wordIndex++;
                 });
 
                 // setTimeout(() => {
@@ -82,9 +78,9 @@
             // Set the timeout to add the fade-out class
             const delay = 50
             setTimeout(() => {
-                console.log('Adding fade-out to:', text);
-                newTextElement.classList.add('fade-out');
-            }, delay * wordIndex); // All animations start at roughly the same time
+                console.log('Adding fade-in to:', text);
+                newTextElement.classList.add('fade-in');
+            }, delay * (wordIndex + 1)); // All animations start at roughly the same time
         }
 
     </script>
