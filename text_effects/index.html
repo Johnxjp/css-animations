@@ -19,28 +19,7 @@
                     animation will start (by setting a delay), how long the transition will last (by setting a
                     duration),
                     and how the transition will run (by defining an easing function, e.g., linearly or quick at the
-                    beginning, slow at the end). CSS transitions let you decide which properties to animate (by listing
-                    them explicitly), when the animation will start (by setting a delay), how long the transition will
-                    last (by setting a duration), and how the transition will run (by defining an easing function, e.g.,
-                    linearly or quick at the beginning, slow at the end).CSS transitions let you decide which properties
-                    to animate (by listing them explicitly), when the animation will start (by setting a delay), how
-                    long the transition will last (by setting a duration), and how the transition will run (by defining
-                    an easing function, e.g., linearly or quick at the beginning, slow at the end).CSS transitions let
-                    you decide which properties to animate (by listing them explicitly), when the animation will start
-                    (by setting a delay), how long the transition will last (by setting a duration), and how the
-                    transition will run (by defining an easing function, e.g., linearly or quick at the beginning, slow
-                    at the end).CSS transitions let you decide which properties to animate (by listing them explicitly),
-                    when the animation will start (by setting a delay), how long the transition will last (by setting a
-                    duration), and how the transition will run (by defining an easing function, e.g., linearly or quick
-                    at the beginning, slow at the end).
-                    CSS transitions let you decide which properties to animate (by listing them explicitly), when the
-                    animation will start (by setting a delay), how long the transition will last (by setting a
-                    duration), and how the transition will run (by defining an easing function, e.g., linearly or quick
-                    at the beginning, slow at the end).CSS transitions let you decide which properties to animate (by
-                    listing them explicitly), when the animation will start (by setting a delay), how long the
-                    transition
-                    will last (by setting a duration), and how the transition will run (by defining an easing function,
-                    e.g., linearly or quick at the beginning, slow at the end).
+                    beginning, slow at the end).
                 </p>
             </div>
         </div>
@@ -55,16 +34,25 @@
         const textInput = document.getElementById('text-input');
         const animateButton = document.getElementById('animate-button');
         const storyText = document.getElementById('story-text');
+        let wordIndex = 0;
 
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent form submission
             const text = textInput.value.trim();
             console.log('Animating text:', text);
+            storyText.textContent = storyText.textContent; // This removes HTML tags
             if (text !== '') {
                 textInput.value = ''; // Clear input field
                 // Trigger animation with the entered text
-                storyText.textContent = storyText.textContent + ' ' + text;
-                highlightNewText(text);
+                text.split(' ').filter(word => word !== '').forEach((word) => {
+                    // storyText.textContent = storyText.textContent + ' ' + word;
+                    highlightNewText(word, wordIndex);
+                    wordIndex++;
+                });
+
+                // setTimeout(() => {
+                //     storyText.textContent = storyText.textContent; // This removes HTML tags
+                // }, 5000);
             }
         });
 
@@ -77,20 +65,26 @@
             }
         }
 
-        function highlightNewText(text) {
-            const currentHTML = storyText.innerHTML;
-            const highlightedText = `<span class="new-text">${text}</span>`;
-            storyText.innerHTML = replaceLast(text, highlightedText);
-            const newTextElement = storyText.querySelector('.new-text');
-            if (newTextElement) {
-                setTimeout(() => {
-                    newTextElement.classList.add('fade-out');
-                }, 10);
-            }
+        function highlightNewText(text, wordIndex) {
+            // Create a space to separate words
+            const space = document.createTextNode(' ');
 
+            // Create the new span element for the word
+            const newTextElement = document.createElement('span');
+            newTextElement.id = `word-${wordIndex}`;
+            newTextElement.className = 'new-text';
+            newTextElement.textContent = text;
+
+            // Append the space and the new word element to the parent
+            storyText.appendChild(space);
+            storyText.appendChild(newTextElement);
+
+            // Set the timeout to add the fade-out class
+            const delay = 50
             setTimeout(() => {
-                storyText.textContent = storyText.textContent; // This removes HTML tags
-            }, 2000);
+                console.log('Adding fade-out to:', text);
+                newTextElement.classList.add('fade-out');
+            }, delay * wordIndex); // All animations start at roughly the same time
         }
 
     </script>
