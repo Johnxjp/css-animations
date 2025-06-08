@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Effects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="story-container">
+            <button class="reaction-text-btn" style="position: absolute; top: 10px; left: 50%;">Explode</button>
+            <p id="story-text">
+                CSS transitions let you decide which properties to animate (by listing them explicitly), when the
+                animation will start (by setting a delay), how long the transition will last (by setting a
+                duration), and how the transition will run (by defining an easing function, e.g., linearly or quick at
+                the beginning, slow at the end). This property deals with situations where the browser calculates the
+                flex-basis values of the flex items, and finds that they are too large to fit into the flex container.
+                As long as flex-shrink has a positive value the items will shrink in order that they do not overflow the
+                container.
+            </p>
+        </div>
+    </div>
+    <script>
+        const storyText = document.getElementById('story-text');
+        const spanHTML = storyText.textContent.split(' ').filter(word => word !== "").map(
+            (word, index) => addExplodeSpan(word, index)
+        );
+        storyText.innerHTML = spanHTML.join(' ');
+
+        const button = document.querySelector('.reaction-text-btn');
+
+        let isExploded = false;
+
+        button.addEventListener('click', () => {
+            const words = document.querySelectorAll('.new-text');
+
+            if (isExploded) {
+                words.forEach((word, index) => {
+                    word.classList.remove('explode');
+                    word.style.transform = '';
+                });
+                isExploded = false;
+            }
+            else {
+                words.forEach((word, index) => {
+                    const xShift = Math.random() * 20 - 10; // Random x shift between -10 and 10
+                    const yShift = Math.random() * 20 - 10; // Random y shift between -10 and 10
+                    setTimeout(() => {
+                        word.classList.add('explode');
+                        word.style.transform = `translate(${xShift}px, ${yShift}px)`;
+                    }, 50); // Delay for each word
+                });
+                isExploded = true;
+            }
+        });
+
+
+        function addExplodeSpan(word, wordIndex) {
+            // Create a space to separate words
+
+            // Create the new span element for the word
+            const newTextElement = document.createElement('span');
+            newTextElement.id = `word-${wordIndex}`;
+            newTextElement.className = 'new-text';
+            newTextElement.textContent = word;
+            return newTextElement.outerHTML;
+        }
+
+    </script>
+</body>
+
+</html>
